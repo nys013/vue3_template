@@ -1,15 +1,7 @@
-<script setup lang="ts">
-const fn = () => {
-  console.log("hello world");
-};
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>my app</div>
+  <router-view></router-view>
 </template>
 
-<style scoped lang="scss">
-.box {
-  background-color: red;
-}
-</style>
+<style scoped lang="scss"></style>
