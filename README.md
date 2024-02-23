@@ -1,18 +1,21 @@
-# Vue 3 + TypeScript + Vite
+# Vue 3 + TypeScript + Vite项目
+## 项目介绍
+### 项目技术栈
+基于Vue 3 + TypeScript + Vite构建的项目，使用了vue-router、pinia状态管理、element-plus UI组件库、axios网络请求库、MockJs、Echarts等第三方库。
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### 项目内容
+目前是一个基础的企业常见通用的后台管理系统模板，包含了菜单管理、角色管理、用户管理、数据大屏等系统模块，以及商品管理的业务模块。
+- 实现了菜单权限和按钮权限的配置功能，以及登陆前后的路由权限控制。
+- 刷新、全屏、以及主题颜色的切换和黑夜模式功能
+- 基于Echarts的大屏图表展示功能。
+- 封装了通用的列表展示、翻页、搜索的TableCreate公共组件
 
-## Recommended IDE Setup
+### 项目启动：
+pnpm install 下载模块
+pnpm run dev 启动项目
+进入网页登陆，管理员账户密码： admin/111111
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### 最后
+前端方面的代码，若遇到问题和看到可以优化的部分，欢迎提issue，一起学习和进步。
+但是接口方面，部分接口采用的是mockjs模拟数据，而部分接口是真实接口，并不是我维护的。若真实接口失效，无法提供帮助。不过建议可以把接口部分代码逻辑修改或把接口改为mock接口。
