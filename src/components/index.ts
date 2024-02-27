@@ -1,4 +1,3 @@
-import { keysOf } from "element-plus/es/utils/objects.mjs";
 import SVGIcon from "./SVGIcon/index.vue";
 import TableCreate from "./TableCreate/index.vue";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";

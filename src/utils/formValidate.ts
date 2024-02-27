@@ -32,7 +32,7 @@ const formValidate: FormValidateFn = function (validate) {
 };
 
 const usernameValidator = (
-  rule: [],
+  _rule: [],
   value: string,
   callback: (error?: string | Error) => void,
 ) => {
@@ -43,7 +43,7 @@ const usernameValidator = (
   }
 };
 const passwordValidator = (
-  rule: [],
+  _rule: [],
   value: string,
   callback: (error?: string | Error) => void,
 ) => {

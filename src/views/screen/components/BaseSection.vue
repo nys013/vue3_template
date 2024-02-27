@@ -1,5 +1,5 @@
 <script setup lang="ts" name="BaseSection">
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: "",

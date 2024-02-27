@@ -1,4 +1,4 @@
-<script setup name="Layout">
+<script setup name="Layout" lang="ts">
 import Menu from "./Menu/index.vue";
 import Main from "./Main/index.vue";
 import TabBar from "./TabBar/index.vue";

@@ -67,7 +67,7 @@ onMounted(() => {
           position: ["0%", "-50%"],
           fontSize: 20,
           color: "white",
-          formatter: ({ data }) => {
+          formatter: ({ data }: { data: string }) => {
             return `男士${data}%`;
           },
         },
@@ -91,7 +91,7 @@ onMounted(() => {
           position: ["75%", "-50%"],
           fontSize: 20,
           color: "white",
-          formatter: ({ data }) => {
+          formatter: ({ data }: { data: string }) => {
             return `女士${data}%`;
           },
         },

@@ -1,3 +1,7 @@
+export interface UserPageParams {
+  page: number;
+  limit: number;
+}
 export interface UserForm {
   username: string;
   name: string;

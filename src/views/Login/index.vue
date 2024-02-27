@@ -25,17 +25,10 @@ const handleLoginClick = async () => {
       });
     }
   } catch (error) {
-    console.log("🚀 ~ handleLoginClick ~ error:", error);
     ElNotification({
-      title: error,
+      title: error as string,
       type: "error",
     });
-    // 接口报错了，以这个方法先进到大屏页面就好
-    // $router.push("/");
-    // ElNotification({
-    //   title: "登陆成功！",
-    //   type: "success",
-    // });
   } finally {
     loading.value = false;
   }

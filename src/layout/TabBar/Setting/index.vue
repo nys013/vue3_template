@@ -1,4 +1,4 @@
-<script setup name="Setting">
+<script setup name="Setting" lang="ts">
 import { ref } from "vue";
 import { useSettingStore } from "@/store/modules/setting";
 import { useUserStore } from "@/store/modules/user";
@@ -34,7 +34,7 @@ const handleLogoutClick = async () => {
 const visible = ref(false);
 const darkMode = ref(false);
 const htmlEl = document.documentElement;
-const handleDarkMoonChange = (value) => {
+const handleDarkMoonChange = (value: string | number | boolean) => {
   if (value) {
     htmlEl.classList.add("dark");
   } else {
@@ -43,7 +43,7 @@ const handleDarkMoonChange = (value) => {
 };
 
 const themeColor = ref("#409eff");
-const handleThemeColorChange = (color) => {
+const handleThemeColorChange = (color: string | null) => {
   getComputedStyle(htmlEl).getPropertyValue(`--el-color-primary`);
   htmlEl.style.setProperty("--el-color-primary", color);
 };

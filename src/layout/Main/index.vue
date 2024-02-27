@@ -1,4 +1,4 @@
-<script setup name="Main">
+<script setup name="Main" lang="ts">
 import { useSettingStore } from "@/store/modules/setting";
 const settingStore = useSettingStore();
 </script>

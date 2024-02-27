@@ -1,4 +1,4 @@
-<script setup name="TabBar">
+<script setup name="TabBar" lang="ts">
 import BreadCrumb from "./BreadCrumb/index.vue";
 import Setting from "./Setting/index.vue";
 </script>

@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     let msg = "";
-    switch (error.response.status) {
+    switch (error.response?.status) {
       case 400:
         msg = "请求错误";
         break;

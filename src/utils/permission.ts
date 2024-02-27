@@ -8,7 +8,7 @@ import pinia from "@/store/index";
 import { useUserStore } from "@/store/modules/user";
 const userStore = useUserStore(pinia);
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
   document.title = import.meta.env.VITE_APP_TITLE + " | " + to.meta.title;
 
   // 接口报错，先把导航相关注释
@@ -38,6 +38,6 @@ router.beforeEach(async (to, from, next) => {
   }
   nprogress.start();
 });
-router.afterEach((to, from) => {
+router.afterEach(() => {
   nprogress.done();
 });

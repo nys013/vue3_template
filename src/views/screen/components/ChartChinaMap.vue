@@ -10,11 +10,11 @@ import beijingJson from "../json/beijing.json";
 import xinjiangJson from "../json/xinjiang.json";
 import shanghaiJson from "../json/shanghai.json";
 
-echarts.registerMap("china", { geoJSON: chinaJson });
-echarts.registerMap("guangxi", { geoJSON: guangxiJson });
-echarts.registerMap("beijing", { geoJSON: beijingJson });
-echarts.registerMap("xinjiang", { geoJSON: xinjiangJson });
-echarts.registerMap("shanghai", { geoJSON: shanghaiJson });
+echarts.registerMap("china", chinaJson as any);
+echarts.registerMap("guangxi", guangxiJson as any);
+echarts.registerMap("beijing", beijingJson as any);
+echarts.registerMap("xinjiang", xinjiangJson as any);
+echarts.registerMap("shanghai", shanghaiJson as any);
 
 const chartRef = ref();
 const mapJsonArr = [
@@ -36,12 +36,12 @@ const mapJsonArr = [
   },
 ];
 let mapName = ref("china");
-let myChart = ref(null);
+let myChart = ref();
 
 onMounted(() => {
   myChart.value = echarts.init(chartRef.value as HTMLDivElement);
   setChart();
-  myChart.value.on("click", (params) => {
+  myChart.value.on("click", (params: { name: string }) => {
     const map = mapJsonArr.find((item) => item.name == params.name);
     if (map) {
       setChart(map.egName);

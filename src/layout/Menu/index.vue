@@ -1,13 +1,13 @@
 <script lang="ts">
 export default {
-  name: "Menu",
+  name: "CustomMenu",
 };
 </script>
 <script setup lang="ts">
 import type { RouteRecordRaw } from "vue-router";
 defineProps({
   menuList: {
-    type: Array,
+    type: Array<RouteRecordRaw>,
     default: (): RouteRecordRaw[] => [],
   },
 });
@@ -22,8 +22,8 @@ defineProps({
         :key="item.name"
         :route="item.path"
       >
-        <el-icon><component :is="item.meta.icon" /></el-icon>
-        <span>{{ item.meta.title }}</span>
+        <el-icon><component :is="item.meta?.icon" /></el-icon>
+        <span>{{ item.meta?.title }}</span>
       </el-menu-item>
       <el-menu-item
         v-else-if="item.name === 'layout'"
@@ -31,19 +31,19 @@ defineProps({
         :key="item.children[0].name"
         :route="item.children[0].path"
       >
-        <el-icon><component :is="item.children[0].meta.icon" /></el-icon>
-        <span>{{ item.children[0].meta.title }}</span>
+        <el-icon><component :is="item.children[0].meta?.icon" /></el-icon>
+        <span>{{ item.children[0].meta?.title }}</span>
       </el-menu-item>
       <el-sub-menu
         v-else-if="item.children && item.children.length"
         :index="item.path"
-        :key="item.name"
+        :key="item!.name"
       >
         <template #title>
-          <el-icon><component :is="item.meta.icon" /></el-icon>
-          <span>{{ item.meta.title }}</span>
+          <el-icon><component :is="item.meta?.icon" /></el-icon>
+          <span>{{ item.meta?.title }}</span>
         </template>
-        <Menu :menuList="item.children"></Menu>
+        <CustomMenu :menuList="item.children" />
       </el-sub-menu>
     </template>
   </template>

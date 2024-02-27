@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import moment from "moment";
 const time = ref(moment().format("YYYY年MM月DD日 HH:mm:ss"));
-let timer;
+let timer: number;
 onMounted(() => {
   timer = setInterval(() => {
     time.value = moment().format("YYYY年MM月DD日 HH:mm:ss");
