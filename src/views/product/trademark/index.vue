@@ -15,7 +15,7 @@ import type { Form } from "@/api/product/type";
 const tableData = ref([]);
 const currentPage = ref<number>(1);
 const pageSize = ref<number>(3);
-const total = ref<number>();
+const total = ref<number>(0);
 
 const getTableData = async () => {
   const res = await getTrademarkPage(currentPage.value, pageSize.value);
