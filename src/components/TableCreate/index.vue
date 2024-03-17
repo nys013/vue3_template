@@ -27,6 +27,7 @@ const props = defineProps({
 
 const $emit = defineEmits(["update:selectedRows"]);
 
+const loading = ref(true);
 const tableData = ref([]);
 const currentPage = ref<number>(1);
 const pageSize = ref<number>(props.pageSizes[0]);
@@ -34,8 +35,8 @@ const total = ref<number>(0);
 let queryStr = ref<string>("");
 
 const getTableData = async () => {
+  loading.value = true;
   const { requestFn, requestParams } = props.tableOptions;
-  console.log("🚀 ~ getTableData ~ showPagination:", props.showPagination);
   if (props.showPagination) {
     const res = await requestFn(
       {
@@ -49,6 +50,7 @@ const getTableData = async () => {
     pageSize.value = res.data.size;
     currentPage.value = res.data.current;
     tableData.value = res.data.records || [];
+    loading.value = false;
   } else {
     const res = await requestFn(
       {
@@ -57,6 +59,7 @@ const getTableData = async () => {
       queryStr.value,
     );
     tableData.value = res.data || [];
+    loading.value = false;
   }
 };
 
@@ -99,6 +102,7 @@ defineExpose({ getTableData, searchTable });
       style="width: 100%"
       @selection-change="handleSelectionChange"
       v-bind="$attrs"
+      v-loading="loading"
     >
       <el-table-column
         v-if="tableOptions.showSelection"

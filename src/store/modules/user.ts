@@ -9,7 +9,7 @@ import { constantRoutes, asyncRoutes, anyRoutes } from "@/router/routes";
 import { type RouteRecordRaw } from "vue-router";
 import router from "@/router";
 
-const menuRoutes: Array<RouteRecordRaw> = [...constantRoutes];
+let menuRoutes: Array<RouteRecordRaw> = [...constantRoutes];
 const username = ref("");
 const avatar = ref("");
 const filterPermissionRoutes = (
@@ -36,7 +36,7 @@ export const useUserStore = defineStore("user", () => {
     username,
     avatar,
     loginRequest: async (params: LoginParams) => {
-      const res = await loginPost(params);
+      const res = await loginPost(params, { showLoading: true });
       const data = res.data;
       if (res.code === 200) {
         localStorage.setItem("TOKEN", data as string);
@@ -64,12 +64,13 @@ export const useUserStore = defineStore("user", () => {
       }
     },
     logout: async () => {
-      const res = await logoutPost();
+      const res = await logoutPost({ showLoading: true });
       if (res.code === 200) {
         localStorage.removeItem("TOKEN");
         token.value = "";
         username.value = "";
         avatar.value = "";
+        menuRoutes = [...constantRoutes];
         return Promise.resolve(true);
       } else {
         ElMessage.error(res.message);

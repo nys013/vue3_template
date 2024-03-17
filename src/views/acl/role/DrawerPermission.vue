@@ -28,7 +28,7 @@ const permissionData = ref<PermissionListResponseData[]>([]);
 onMounted(async () => {
   drawerVisible.value = true;
   Object.assign(formData, props.rowData);
-  const res = await getRolePermission(props.rowData.id);
+  const res = await getRolePermission(props.rowData.id, { showLoading: true });
   if (res.code === 200) {
     console.log(res.data);
     permissionData.value = res.data.slice(0, 1);
@@ -64,10 +64,12 @@ const handleDrawerConfirm = async () => {
       ...treeRef.value.getCheckedKeys(),
       ...treeRef.value.getHalfCheckedKeys(),
     ];
-    const res = await setRolePermission(props.rowData.id, permissionIds);
+    const res = await setRolePermission(props.rowData.id, permissionIds, {
+      showLoading: true,
+    });
     if (res.code === 200) {
       ElMessage.success("分配成功");
-      // window.location.reload();
+      window.location.reload();
     } else {
       ElMessage.error(res.message);
     }

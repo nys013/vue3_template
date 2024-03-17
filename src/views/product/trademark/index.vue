@@ -1,7 +1,7 @@
 <script setup lang="ts" name="TradeMark">
 import { onMounted, reactive, ref, watch } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
-import { Plus } from "@element-plus/icons-vue";
+import { Plus, Picture as IconPicture } from "@element-plus/icons-vue";
 
 import type { UploadProps } from "element-plus";
 
@@ -12,17 +12,20 @@ import {
 } from "@/api/product";
 import type { Form } from "@/api/product/type";
 
+const loading = ref(false);
 const tableData = ref([]);
 const currentPage = ref<number>(1);
 const pageSize = ref<number>(3);
 const total = ref<number>(0);
 
 const getTableData = async () => {
+  loading.value = true;
   const res = await getTrademarkPage(currentPage.value, pageSize.value);
   total.value = res.data.total;
   pageSize.value = res.data.size;
   currentPage.value = res.data.current;
   tableData.value = res.data.records || [];
+  loading.value = false;
 };
 
 watch(pageSize, () => {
@@ -129,12 +132,26 @@ const handleDeleteClick = (row: Form) => {
           >+添加品牌</el-button
         >
       </div>
-      <el-table :data="tableData" border style="width: 100%">
+      <el-table
+        :data="tableData"
+        border
+        style="width: 100%"
+        v-loading="loading"
+      >
         <el-table-column type="index" label="序号" width="80" />
         <el-table-column prop="tmName" label="品牌名称" width="180" />
         <el-table-column prop="logo" label="品牌LOGO">
           <template v-slot="scope">
-            <img :src="scope.row.logoUrl" width="80" height="80" />
+            <el-image
+              :src="scope.row.logoUrl"
+              :style="{ width: '80px', height: '80px' }"
+            >
+              <template #error>
+                <div class="image-slot">
+                  <el-icon><icon-picture /></el-icon>
+                </div>
+              </template>
+            </el-image>
           </template>
         </el-table-column>
 
@@ -196,11 +213,17 @@ const handleDeleteClick = (row: Form) => {
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
           >
-            <img
+            <el-image
               v-if="formData.logoUrl"
               :src="formData.logoUrl"
               class="avatar"
-            />
+            >
+              <template #error>
+                <div class="image-slot">
+                  <el-icon><icon-picture /></el-icon>
+                </div>
+              </template>
+            </el-image>
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
@@ -248,5 +271,18 @@ const handleDeleteClick = (row: Form) => {
   width: 178px;
   height: 178px;
   display: block;
+}
+.image-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--el-fill-color-light);
+  color: var(--el-text-color-secondary);
+  font-size: 30px;
+}
+.image-slot .el-icon {
+  font-size: 30px;
 }
 </style>

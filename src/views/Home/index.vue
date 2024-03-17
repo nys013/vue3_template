@@ -2,6 +2,7 @@
 import { useUserStore } from "@/store/modules/user";
 const userStore = useUserStore();
 const subtitle = import.meta.env.VITE_APP_TITLE;
+console.log("测试生产环境有无打印");
 </script>
 
 <template>

@@ -44,7 +44,7 @@ const rules = reactive({
 const handleDialogConfirm = async () => {
   await formRef.value.validate();
   try {
-    const res = await addOrUpdateRole(formData);
+    const res = await addOrUpdateRole(formData, { showLoading: true });
     if (res.code === 200) {
       ElMessage.success((props.action === "A" ? "新增" : "修改") + "成功");
       dialogVisible.value = false;

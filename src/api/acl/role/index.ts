@@ -32,35 +32,50 @@ export const getRolePage = (
 
 export const addOrUpdateRole = (
   params: RoleForm,
+  options = {},
 ): Promise<AddOrUpdateResponseData> => {
   if (params.id) {
-    return request.put(ROLE_URL.ROLE_UPDATE_URL, params);
+    return request.put<any, any, any>(
+      ROLE_URL.ROLE_UPDATE_URL,
+      params,
+      options,
+    );
   } else {
-    return request.post(ROLE_URL.ROLE_SAVE_URL, params);
+    return request.post(ROLE_URL.ROLE_SAVE_URL, params, options);
   }
 };
 
-export const deleteRole = (id: number): Promise<DeleteRoleResponseData> => {
-  return request.delete(ROLE_URL.ROLE_DELETE_URL + `${id}`);
+export const deleteRole = (
+  id: number,
+  options = {},
+): Promise<DeleteRoleResponseData> => {
+  return request.delete(ROLE_URL.ROLE_DELETE_URL + `${id}`, options);
 };
 export const deleteRoles = (
   idList: number[],
+  options = {},
 ): Promise<DeleteRoleResponseData> => {
-  return request.delete(ROLE_URL.ROLE_BATCH_DELETE_URL, { data: idList });
+  return request.delete(ROLE_URL.ROLE_BATCH_DELETE_URL, {
+    data: idList,
+    ...options,
+  });
 };
 
 export const getRolePermission = (
   roleId: number,
+  options = {},
 ): Promise<GetPermissionResponseData> => {
-  return request.get(ROLE_URL.ROLE_GET_PERMISSION_URL + `${roleId}`);
+  return request.get(ROLE_URL.ROLE_GET_PERMISSION_URL + `${roleId}`, options);
 };
 
 export const setRolePermission = (
   roleId: number,
   permissionId: number[],
+  options = {},
 ): Promise<SetPermissionResponseData> => {
   return request.post(
     ROLE_URL.ROLE_SET_PERMISSION_URL +
       `roleId=${roleId}&permissionId=${permissionId}`,
+    options,
   );
 };

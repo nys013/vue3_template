@@ -61,8 +61,7 @@ const handleBatchClick = () => {
   }).then(async () => {
     try {
       const ids = selectedRows.value.map((item) => item.id);
-      console.log("🚀 ~ handleBatchClick ~ ids:", ids);
-      const res = await deleteUsers(ids);
+      const res = await deleteUsers(ids, { showLoading: true });
       if (res.code === 200) {
         ElMessage.success("删除成功");
         tableDom.value.getTableData();
@@ -80,7 +79,7 @@ const handleDeleteClick = async (row: UserRow) => {
     return ElMessage.success("该数据不能删除");
   }
   try {
-    const res = await deleteUser(row.id);
+    const res = await deleteUser(row.id, { showLoading: true });
     if (res.code === 200) {
       ElMessage.success("删除成功");
       tableDom.value.getTableData();

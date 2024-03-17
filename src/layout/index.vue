@@ -5,11 +5,7 @@ import TabBar from "./TabBar/index.vue";
 
 import { ref } from "vue";
 import { useUserStore } from "@/store/modules/user";
-import { onMounted } from "vue";
 const userStore = useUserStore();
-onMounted(() => {
-  console.log("🚀 ~ onMounted ~ userStore:", userStore);
-});
 
 const isCollapse = ref(false);
 </script>
@@ -45,6 +41,8 @@ const isCollapse = ref(false);
 </template>
 
 <style scoped lang="scss">
+$transition: all 0.4s;
+
 .layout-wrapper {
   // background-color: #f0f0f0;
   .layout-slider {
@@ -53,11 +51,12 @@ const isCollapse = ref(false);
     height: 100vh;
     background-color: $base-menu-background;
     color: #fff;
-    transition: all 0.3s;
+    transition: $transition;
     &.isFold {
       width: $base-menu-fold-width;
     }
     .slider-scrollbar {
+      margin-left: -10px;
       height: calc(100vh - 40px);
       .el-menu {
         border-right: none;
@@ -79,7 +78,7 @@ const isCollapse = ref(false);
     width: calc(100vw - $base-menu-width);
     height: $base-tabbar-height;
     border-bottom: 1px solid rgb(228, 244, 223);
-    transition: all 0.3s;
+    transition: $transition;
     &.isFold {
       width: calc(100vw - $base-menu-fold-width);
       left: $base-menu-fold-width;
@@ -93,7 +92,7 @@ const isCollapse = ref(false);
     height: calc(100vh - $base-tabbar-height);
     padding: 20px;
     overflow-y: auto;
-    transition: all 0.3s;
+    transition: $transition;
     &.isFold {
       width: calc(100vw - $base-menu-fold-width);
       left: $base-menu-fold-width;

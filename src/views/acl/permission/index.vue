@@ -55,7 +55,7 @@ const handleEditClick = (row: PermissionRow) => {
 const handleDeleteClick = async (row: PermissionRow) => {
   if (!row.id) return;
   try {
-    const res = await deletePermission(row.id);
+    const res = await deletePermission(row.id, { showLoading: true });
     if (res.code === 200) {
       ElMessage.success("删除成功");
       tableDom.value.getTableData();

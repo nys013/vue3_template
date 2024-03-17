@@ -66,7 +66,7 @@ const handleDrawerConfirm = async () => {
       userId: props.rowData.id,
       roleIdList: checkedRoles.value,
     };
-    const res = await doAssignRole(params);
+    const res = await doAssignRole(params, { showLoading: true });
     if (res.code === 200) {
       ElMessage.success("分配成功");
       const sameUser = props.rowData.username === userStore.username;

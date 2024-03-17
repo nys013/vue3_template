@@ -8,6 +8,7 @@
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vue-tsc && vite build --mode production",
     "build:only": "vite build",
+    "deploy": "bash deploy.sh",
     "preview": "vite preview",
     "lint": "eslint src",
     "fix": "eslint src --fix",

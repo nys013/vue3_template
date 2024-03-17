@@ -12,6 +12,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   return {
+    base: "./",
     plugins: [
       vue(),
       vueSetupExtend(),
@@ -47,6 +48,12 @@ export default defineConfig(({ command, mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
+    },
+    build: {
+      minify: "esbuild",
+    },
+    esbuild: {
+      drop: ["console", "debugger"],
     },
   };
 });

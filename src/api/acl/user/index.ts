@@ -33,21 +33,30 @@ export const getUserPage = (
 
 export const addOrUpdateUser = (
   params: UserForm,
+  options = {},
 ): Promise<AddOrUpdateResponseData> => {
   if (params.id) {
-    return request.put(USER_URL.USER_UPDATE_URL, params);
+    return request.put(USER_URL.USER_UPDATE_URL, params, options);
   } else {
-    return request.post(USER_URL.USER_SAVE_URL, params);
+    return request.post(USER_URL.USER_SAVE_URL, params, options);
   }
 };
 
-export const deleteUser = (id: number): Promise<DeleteRoleResponseData> => {
-  return request.delete(USER_URL.USER_DELETE_URL + `${id}`);
+export const deleteUser = (
+  id: number,
+  options = {},
+): Promise<DeleteRoleResponseData> => {
+  return request.delete(USER_URL.USER_DELETE_URL + `${id}`, options);
 };
+
 export const deleteUsers = (
   idList: number[],
+  options = {},
 ): Promise<DeleteRoleResponseData> => {
-  return request.delete(USER_URL.USER_BATCH_DELETE_URL, { data: idList });
+  return request.delete(USER_URL.USER_BATCH_DELETE_URL, {
+    data: idList,
+    ...options, // 只有put/post/patch请求可以传data，其他的第二个参数是config，所以传参和配置就得合起来写了
+  });
 };
 
 export const getUserRoles = (
@@ -58,6 +67,7 @@ export const getUserRoles = (
 
 export const doAssignRole = (
   params: DoAssignRoleData,
+  options = {},
 ): Promise<DoAssignRoleResponseData> => {
-  return request.post(USER_URL.USER_SET_ROLES_URL, params);
+  return request.post(USER_URL.USER_SET_ROLES_URL, params, options);
 };

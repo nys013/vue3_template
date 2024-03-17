@@ -19,16 +19,21 @@ export const getPermissionPage = () => {
 
 export const addOrUpdatePermission = (
   params: AddOrUpdateParams,
+  options = {},
 ): Promise<AddOrUpdateResponseData> => {
   if (params.id) {
-    return request.put(PERMISSION_URL.PERMISSION_UPDATE_URL, params);
+    return request.put(PERMISSION_URL.PERMISSION_UPDATE_URL, params, options);
   } else {
-    return request.post(PERMISSION_URL.PERMISSION_SAVE_URL, params);
+    return request.post(PERMISSION_URL.PERMISSION_SAVE_URL, params, options);
   }
 };
 
 export const deletePermission = (
   id: number,
+  options = {},
 ): Promise<DeletePermissionResponseData> => {
-  return request.delete(PERMISSION_URL.PERMISSION_DELETE_URL + `${id}`);
+  return request.delete(
+    PERMISSION_URL.PERMISSION_DELETE_URL + `${id}`,
+    options,
+  );
 };

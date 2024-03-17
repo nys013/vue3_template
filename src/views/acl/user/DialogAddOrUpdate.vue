@@ -52,7 +52,7 @@ const userStore = useUserStore();
 const handleDialogConfirm = async () => {
   await formRef.value.validate();
   try {
-    const res = await addOrUpdateUser(formData);
+    const res = await addOrUpdateUser(formData, { showLoading: true });
     if (res.code === 200) {
       ElMessage.success((props.action === "A" ? "新增" : "修改") + "成功");
       const sameUser = props.rowData.username === userStore.username;

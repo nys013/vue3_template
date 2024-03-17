@@ -68,8 +68,7 @@ const handleBatchClick = () => {
   }).then(async () => {
     try {
       const ids = selectedRows.value.map((item) => item.id);
-      console.log("🚀 ~ handleBatchClick ~ ids:", ids);
-      const res = await deleteRoles(ids);
+      const res = await deleteRoles(ids, { showLoading: true });
       if (res.code === 200) {
         ElMessage.success("删除成功");
         tableDom.value.getTableData();
