@@ -36,19 +36,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 建一个名为setup-node的步骤（安装指定版本的Node.js）
-      - name: setup-node 
-        # 使用setup-node@v3这个action
-        uses: actions/setup-node@v3
-        # 指定某个action 可能需要输入的参数
-        with:
-          node-version: '18.20.2'
-           # 缓存 pnpm 依赖
-          cache: pnpm
+      # # 建一个名为setup-node的步骤（安装指定版本的Node.js）
+      # - name: setup-node 
+      #   # 使用setup-node@v3这个action
+      #   uses: actions/setup-node@v4
+      #   # 指定某个action 可能需要输入的参数
+      #   with:
+      #     node-version: '18.20.2'
+      #      # 缓存 pnpm 依赖
+      #     cache: pnpm
 
-      # 安装 pnpm
-      - name: Install pnpm
-        run: npm install pnpm -g
+      # # 安装 pnpm
+      # - name: Install pnpm
+      #   run: npm install pnpm -g
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          # 选择要使用的 pnpm 版本
+          version: 9
+          # 使用 pnpm 安装依赖
+          run_install: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # 选择要使用的 node 版本
+          node-version: 18.20.2
+          # 缓存 pnpm 依赖
+          cache: pnpm
 
       # 安装依赖  
       - name: Install dependencies
