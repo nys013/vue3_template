@@ -49,7 +49,7 @@ $transition: all 0.4s;
     position: relative;
     width: $base-menu-width;
     height: 100vh;
-    background-color: $base-menu-background;
+    background-color: $baseMenuBackground;
     color: #fff;
     transition: $transition;
     &.isFold {

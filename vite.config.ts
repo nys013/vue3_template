@@ -36,7 +36,7 @@ export default defineConfig(({ command, mode }) => {
         scss: {
           javascriptEnabled: true,
           // 全局引入scss变量配置
-          additionalData: '@import "./src/styles/variable.scss";',
+          additionalData: '@use "./src/styles/variable.scss"  as *;',
         },
       },
     },

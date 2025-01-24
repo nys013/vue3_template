@@ -1,5 +1,5 @@
-//引入清除默认样式
-@import './reset.scss';
+
+@use './reset.scss'; //引入清除默认样式
 
 
 
@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: $base-menu-background;
+    background: $baseMenuBackground;
 }
 
 ::-webkit-scrollbar-thumb{
