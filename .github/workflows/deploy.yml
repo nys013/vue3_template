@@ -43,6 +43,8 @@ jobs:
         # 指定某个action 可能需要输入的参数
         with:
           node-version: '18.20.2'
+           # 缓存 pnpm 依赖
+          cache: pnpm
 
       # 安装 pnpm
       - name: Install pnpm
