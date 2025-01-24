@@ -1,3 +1,3 @@
 export const defaultOptions = {
-  showLoading: true
+  showLoading: true,
 };
