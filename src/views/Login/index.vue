@@ -38,7 +38,7 @@ const handleLoginClick = async () => {
 <template>
   <div class="login-wrapper">
     <div class="form-wrapper">
-      <h1>HELLO</h1>
+      <h1>HI~</h1>
       <h2>欢迎来到登陆页面</h2>
       <el-form :model="formData" class="form">
         <el-form-item>
