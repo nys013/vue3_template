@@ -15,7 +15,7 @@ jobs:
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # The folder the action should deploy.
-          BRANCH: gh-pages
           ACCESS_TOKEN: ${{ secrets.DEPLOY }}
-          BUILD_SCRIPT: pnpm install && pnpm run build
+          BRANCH: gh-pages
+          FOLDER: dist
+          BUILD_SCRIPT: npm install && npm run build
